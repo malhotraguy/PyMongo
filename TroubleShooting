@@ -1,0 +1,19 @@
+MongoDB – Failed to unlink socket file /tmp/mongodb-27017
+
+Check the /tmp/mongodb-27017.sock permission, owner is root?
+
+$ ls -ls /tmp/mongodb-27017.sock
+0 srwx------ 1 root root 0 Aug 24 03:56 /tmp/mongodb-27017.sock
+
+<h>Solution</h>
+To fix it, delete the /tmp/mongodb-27017.sock file manually and start the mongod process. Check the /tmp/mongodb-27017.sock permission again, the ownership is changed to the ‘mongodb’ user.
+
+$ sudo rm -rf /tmp/mongodb-27017.sock
+$ sudo service mongod start
+[ok]
+
+$ ls -lsah /tmp/mongodb-27017.sock
+0 srwx------ 1 mongodb mongodb 0 Aug 24 04:01 /tmp/mongodb-27017.sock
+
+Common error
+While sudo apt-get upgrade, Debian helps to upgrade the MongoDB automatically, and changed the mongodb-27017.sock ownership to root, and normally we start the ‘mongod’ process with user ‘mongodb’, and caused this “Operation not permitted”.
