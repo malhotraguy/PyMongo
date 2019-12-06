@@ -52,5 +52,5 @@ vboxapi==1.0
 virtualenv==15.1.0
 Wand==0.5.0
 websocket-client==0.54.0
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 WTForms==1.0.5
